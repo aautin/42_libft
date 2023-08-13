@@ -14,13 +14,15 @@
 
 int		main(int ac, char **av)
 {
-	int		liste[1] = {atoi(av[1])};
-	int		liste2[1] = {atoi(av[1])};
+	int		liste2[3] = {atoi(av[1]), 0, 0};
+	int		liste[3] = {atoi(av[1])};
 	int		liste3[1] = {atoi(av[1])};
-	int		liste4[1] = {atoi(av[1]),};
+	int		liste4[1] = {atoi(av[1])};
+	char	*liste5 = av[1];
+	char	*liste6 = av[1];
 	// {00110001 01010101 00100010 01111001} = 827662969 = nb intéressant à test pr les 'mem...'
 
-	if (ac == 2 && ft_atoi(av[1]) != -1)
+	if (ac == 2 && ft_atoi(av[1]) != -1 && ft_atoi(av[1]) != 444)
     {
 		printf("%d\n", ft_isalnum(av[1][0]));
         printf("%d\n", ft_isalpha(av[1][0]));
@@ -71,11 +73,14 @@ int		main(int ac, char **av)
 		printf("%d | ", ft_strncmp(av[1], av[2], (size_t) atoi(av[3])));
 		printf("%d\n", strncmp(av[1], av[2], (size_t) atoi(av[3])));
 		//
-		printf("%s |\n", (unsigned char *) ft_memset(liste, av[2][0], ft_atoi(av[3])));
-		printf("%s |\n", (unsigned char *) memset(liste2, av[2][0], ft_atoi(av[3])));
+		printf("%s |\n", (unsigned char *) memset(liste2, av[2][0], sizeof(int) * ft_atoi(av[3])));
+		printf("%s |\n", (unsigned char *) ft_memset(liste, av[2][0], sizeof(int) * ft_atoi(av[3])));
 		//
-		printf("%s |\n", (unsigned char *) ft_memcpy(liste3, av[2], ft_atoi(av[3])));
-		printf("%s |\n", (unsigned char *) memcpy(liste4, av[2], ft_atoi(av[3])));
+		printf("%s |\n", (unsigned char *) ft_memcpy(liste3, av[2], sizeof(int) * ft_atoi(av[3])));
+		printf("%s |\n", (unsigned char *) memcpy(liste4, av[2], sizeof(int) * ft_atoi(av[3])));
+		//
+		printf("%s |\n", (unsigned char *) ft_memchr(liste5, av[2][0], ft_atoi(av[3])));
+		printf("%s |\n", (unsigned char *) memchr(liste6, av[2][0], ft_atoi(av[3])));
 	}
 	if (ac == 5)
 	{
@@ -104,5 +109,27 @@ int		main(int ac, char **av)
 		while (i < 9)
 			printf("%d  ", src[i++]);
 		printf("\n");
+	}
+	if (ft_atoi(av[1]) == 444)
+	{
+		char	s1[100];
+		scanf("%s", s1);
+		char	s2[100];
+		scanf("%s", s2);
+		char	number[5];
+		scanf("%s", number);
+		int		n = ft_atoi(number);
+
+		printf("%d | %d", ft_memcmp(s1, s2, n), memcmp(s1, s2, n));
+	}
+	if (ft_atoi(av[1]) == 555)
+	{
+		char	s1[100];
+		scanf("%s", s1);
+		char	s2[100];
+		scanf("%s", s2);
+		ft_bzero(s1, ft_strlen(s1));
+		ft_bzero(s2, ft_strlen(s2));
+		printf("%s| %s", s1, s2);
 	}
 }
