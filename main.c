@@ -22,7 +22,8 @@ int		main(int ac, char **av)
 	char	*liste6 = av[1];
 	// {00110001 01010101 00100010 01111001} = 827662969 = nb intéressant à test pr les 'mem...'
 
-	if (ac == 2 && ft_atoi(av[1]) != -1 && ft_atoi(av[1]) != 444 && ft_atoi(av[1]) != 555)
+	if (ac == 2 && ft_atoi(av[1]) != -1 && ft_atoi(av[1]) != 444
+		&& ft_atoi(av[1]) != 555 && ft_atoi(av[1]) != 666)
     {
 		printf("%d\n", ft_isalnum(av[1][0]));
         printf("%d\n", ft_isalpha(av[1][0]));
@@ -140,5 +141,9 @@ int		main(int ac, char **av)
 		char	s3[100];
 		// comparer ici strlcat et ft_strlcat, strlcpy et ft_strlcpy
 		printf("%s | %s || %s | %s", s1, s2, s3, s4);
+	}
+	if (ft_atoi(av[1]) == 666)
+	{
+	// have to test the "put..." functions here
 	}
 }
