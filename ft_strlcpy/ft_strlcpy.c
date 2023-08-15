@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,16 +12,22 @@
 
 #include "../libft.h"
 
-void	ft_bzero(void *s, size_t n)
+unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
-	unsigned char	*ptr;
+	unsigned int	indice;
 
-	ptr = (unsigned char *) s;
-
-	while (n--)
-	{
-		*ptr = '\0';
-		ptr++;
+	indice = 0;
+	if (size > 0)
+	{	
+		while (src[indice] && indice < size - 1)
+		{
+			dest[indice] = src[indice];
+			indice++;
+		}
+		dest[indice] = '\0';
 	}
-	return ;
+	indice = 0;
+	while (src[indice])
+		indice++;
+	return (indice);
 }

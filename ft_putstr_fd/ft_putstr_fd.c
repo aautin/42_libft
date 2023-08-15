@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,16 +12,11 @@
 
 #include "../libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_putstr_fd(char *s, int fd)
 {
-	unsigned char	*ptr;
+	size_t	i;
 
-	ptr = (unsigned char *) s;
-
-	while (n--)
-	{
-		*ptr = '\0';
-		ptr++;
-	}
-	return ;
+	i = 0;
+	while (s[i])
+		ft_putchar_fd(s[i], fd);
 }

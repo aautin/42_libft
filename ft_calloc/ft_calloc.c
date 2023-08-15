@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,16 +12,14 @@
 
 #include "../libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	unsigned char	*ptr;
+	size_t	total_size;
+	void*	ptr;
 
-	ptr = (unsigned char *) s;
-
-	while (n--)
-	{
-		*ptr = '\0';
-		ptr++;
-	}
-	return ;
+	total_size = nmemb * size;
+	ptr = (void *)malloc(total_size * sizeof(void));
+	if (ptr != NULL)
+		ft_bzero(ptr, total_size);
+	return (ptr);
 }

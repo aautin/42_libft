@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,16 +12,24 @@
 
 #include "../libft.h"
 
-void	ft_bzero(void *s, size_t n)
+unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {
-	unsigned char	*ptr;
+	unsigned int	origin_dest_len;
+	unsigned int	origin_src_len;
+	unsigned int	i;
 
-	ptr = (unsigned char *) s;
-
-	while (n--)
+	i = 0;
+	origin_dest_len = ft_strlen(dest);
+	origin_src_len = ft_strlen(src);
+	if (size > 0 && size > origin_dest_len)
 	{
-		*ptr = '\0';
-		ptr++;
+		while (i < origin_src_len && i < size - origin_dest_len - 1)
+		{
+			dest[origin_dest_len + i] = src[i];
+			i ++;
+		}
+		dest[origin_dest_len + i] = '\0';
+		return (origin_dest_len + origin_src_len);
 	}
-	return ;
+	return (origin_src_len + size);
 }

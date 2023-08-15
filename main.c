@@ -22,7 +22,7 @@ int		main(int ac, char **av)
 	char	*liste6 = av[1];
 	// {00110001 01010101 00100010 01111001} = 827662969 = nb intéressant à test pr les 'mem...'
 
-	if (ac == 2 && ft_atoi(av[1]) != -1 && ft_atoi(av[1]) != 444)
+	if (ac == 2 && ft_atoi(av[1]) != -1 && ft_atoi(av[1]) != 444 && ft_atoi(av[1]) != 555)
     {
 		printf("%d\n", ft_isalnum(av[1][0]));
         printf("%d\n", ft_isalpha(av[1][0]));
@@ -82,9 +82,9 @@ int		main(int ac, char **av)
 		printf("%s |\n", (unsigned char *) ft_memchr(liste5, av[2][0], ft_atoi(av[3])));
 		printf("%s |\n", (unsigned char *) memchr(liste6, av[2][0], ft_atoi(av[3])));
 	}
-	if (ac == 5)
+	if (ac == 4)
 	{
-		if (memccpy(liste, av[2], ft_atoi(av[3]), ft_atoi(av[4])))
+		if (memccpy(liste, av[1], ft_atoi(av[2]), ft_atoi(av[3])))
 		{
 			printf("%s |\n", (unsigned char *) liste);
 			printf("original\n");
@@ -93,7 +93,7 @@ int		main(int ac, char **av)
 		//
 		liste[1] = atoi(av[1]);
 		//
-		if (ft_memccpy(liste, av[2], ft_atoi(av[3]), ft_atoi(av[4])))
+		if (ft_memccpy(liste, av[1], ft_atoi(av[2]), ft_atoi(av[3])))
 		{
 			printf("%s |\n", (unsigned char *) liste);
 			printf("copy\n");
@@ -131,5 +131,14 @@ int		main(int ac, char **av)
 		ft_bzero(s1, ft_strlen(s1));
 		ft_bzero(s2, ft_strlen(s2));
 		printf("%s| %s", s1, s2);
+	}
+	if (ac == 5)
+	{
+		char	s1[100]; 
+		char	s2[100];
+		char	s4[100];
+		char	s3[100];
+		// comparer ici strlcat et ft_strlcat, strlcpy et ft_strlcpy
+		printf("%s | %s || %s | %s", s1, s2, s3, s4);
 	}
 }
