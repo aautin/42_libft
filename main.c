@@ -135,15 +135,39 @@ int		main(int ac, char **av)
 	}
 	if (ac == 5)
 	{
-		char	s1[100]; 
-		char	s2[100];
-		char	s4[100];
-		char	s3[100];
-		// comparer ici strlcat et ft_strlcat, strlcpy et ft_strlcpy
+		char	src1[100];
+		char	s1[100] = "premiere string";
+		char	s2[100] = "2eme string";
+
+		char	src2[100];
+		char	s3[100] = "3eme string";
+		char	s4[100] = "quatrieme string";
+
+
+		scanf("%s", src1);
+		scanf("%s", src2);
+		printf("%s\n", src1);
+		printf("%s\n", src2);
+
+		ft_strlcpy(s1, src1, ft_strlen(src1));
+		strlcpy(s2, src1, ft_strlen(src1));
+		ft_strlcat(s3, src2, ft_strlen(s3));
+		strlcat(s4, src2, ft_strlen(s4));
+
 		printf("%s | %s || %s | %s", s1, s2, s3, s4);
 	}
 	if (ft_atoi(av[1]) == 666)
 	{
-	// have to test the "put..." functions here
+		char	s1[100];
+		char	s2[100];
+		char	s3[100];
+		scanf("%s", s1);
+		scanf("%s", s2);
+		scanf("%s", s3);	
+
+		ft_putchar_fd(s1[0], 1);
+		ft_putstr_fd(s1, 1);
+		ft_putendl_fd(s2, 1);
+		ft_putnbr_fd(atoi(s3), 1);
 	}
 }
