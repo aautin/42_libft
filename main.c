@@ -53,6 +53,11 @@ int		main(int ac, char **av)
 		printf("%d\n", ft_atoi(av[1]));
 		printf("%d\n", atoi(av[1]));    
 		
+		if (ft_itoa(ft_atoi(av[1])))
+			printf("into an array : %s\n", ft_itoa(ft_atoi(av[1])));
+		else
+			printf("NULL\n");
+
 		if (strdup(av[1]))
 			printf("%s\n", strdup(av[1]));
 		else

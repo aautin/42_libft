@@ -30,6 +30,7 @@ int				ft_tolower(int c);
 int				ft_toupper(int c);
 
 //	utils functions
+int				ft_nb_size(int n);
 int				ft_is_in_str(char	a, char *s);
 char			*ft_strdup_sep(const char *s, size_t *pos, char sep);
 size_t			ft_count_elements(char const *s, char c);
@@ -67,6 +68,8 @@ char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
 char 			*ft_strtrim(char const *s1, char const *set);
 char			**ft_split(char const *s, char c);
+char			*ft_itoa(int n);
+char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 // ----- here including the strlcat and strlcpy functions -----
 size_t			strlcpy(char *dst, const char *src, size_t siz);
