@@ -14,14 +14,28 @@
 
 int		main(int ac, char **av)
 {
-	int		liste2[3] = {atoi(av[1]), 0, 0};
-	int		liste[3] = {atoi(av[1])};
-	int		liste3[1] = {atoi(av[1])};
-	int		liste4[1] = {atoi(av[1])};
-	char	*liste5 = av[1];
-	char	*liste6 = av[1];
-	// {00110001 01010101 00100010 01111001} = 827662969 = nb intéressant à test pr les 'mem...'
-
+	if (ac == 1)
+	{
+		char	s1[100];
+		char	s2[100];
+		ft_bzero(s1, 100);
+		ft_bzero(s2, 100);
+		scanf("%s", s1);
+		scanf("%s", s2);
+		if (!ft_strtrim(s1, s2))
+			printf("NULL\n");
+		else
+			printf("%s\n", ft_strtrim(s1, s2));
+		char **tab = ft_split(s1, s2[0]);
+		int	i;
+		i = 0;
+		while (tab[i])
+		{
+			printf("%d : ", i);
+			printf("%s\n", tab[i++]);
+		}
+		return (0);
+	}
 	if (ac == 2 && ft_atoi(av[1]) != -1 && ft_atoi(av[1]) != 444
 		&& ft_atoi(av[1]) != 555 && ft_atoi(av[1]) != 666)
     {
@@ -58,9 +72,18 @@ int		main(int ac, char **av)
 			printf("%s\n", strrchr(av[1], av[2][0]));
 		else
 			printf("NULL\n");
+		printf("%s", ft_strjoin(av[1], av[2]));
 	}
-	if (ac == 4)
+	if (ac == 4 && ft_atoi(av[2]) == 0)
 	{
+		int		liste[3] = {atoi(av[1])};
+		int		liste2[3] = {atoi(av[1]), 0, 0};
+		int		liste3[1] = {atoi(av[1])};
+		int		liste4[1] = {atoi(av[1])};
+		char	*liste5 = av[1];
+		char	*liste6 = av[1];
+		// {00110001 01010101 00100010 01111001} = 827662969 = nb intéressant à test pr les 'mem...'
+		
 		if (ft_strnstr(av[1], av[2], ft_atoi(av[3])))
 			printf("%s\n", ft_strnstr(av[1], av[2], ft_atoi(av[3])));
 		else
@@ -83,8 +106,11 @@ int		main(int ac, char **av)
 		printf("%s |\n", (unsigned char *) ft_memchr(liste5, av[2][0], ft_atoi(av[3])));
 		printf("%s |\n", (unsigned char *) memchr(liste6, av[2][0], ft_atoi(av[3])));
 	}
-	if (ac == 4)
+	if (ac == 4 && ft_atoi(av[2]) != 0)
 	{
+		int		liste[3] = {atoi(av[1])};
+		printf("%s\n", ft_substr(av[1], ft_atoi(av[2]), ft_atoi(av[3])));
+		
 		if (memccpy(liste, av[1], ft_atoi(av[2]), ft_atoi(av[3])))
 		{
 			printf("%s |\n", (unsigned char *) liste);
