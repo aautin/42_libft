@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,23 +12,10 @@
 
 #include "../libft.h"
 
-char	*ft_strdup(const char *s)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	int		i;
-	char	*str;
-
-	i = 0;
-	while (s[i])
-		i++;
-	str = (char *)malloc((i + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while(s[i])
-	{
-		str[i] = s[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	if (!lst || !del)
+		return ;
+	del(lst->content);
+	free(lst);
 }

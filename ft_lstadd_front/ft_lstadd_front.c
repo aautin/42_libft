@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,23 +12,8 @@
 
 #include "../libft.h"
 
-char	*ft_strdup(const char *s)
+void	ft_lstadd_front(t_list **alst, t_list *new)
 {
-	int		i;
-	char	*str;
-
-	i = 0;
-	while (s[i])
-		i++;
-	str = (char *)malloc((i + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while(s[i])
-	{
-		str[i] = s[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	new->next = *alst;
+	*alst = new;
 }

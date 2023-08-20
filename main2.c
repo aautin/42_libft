@@ -12,23 +12,25 @@
 
 #include "libft.h"
 
-t_list			*ft_lstnew(void *content)
+void	freestr(void *s)
 {
-	t_list	*list;
-	list->content = void
+	free(s);
 }
-
-// just trying to understand the linked lists here...
 
 int		main(void)
 {
-	t_list	*list;
-	list = ft_lstnew(list);
-	printf("%s\n", list->content);
-	while (list->next)
+	t_list		*list;
+
+	list = ft_lstnew("1 salut");
+	list->next = ft_lstnew("2 saaaluuut");
+	ft_lstadd_front(&list, ft_lstnew("0 saaaluuuuuuuut"));
+	ft_lstadd_back(&list, ft_lstnew("3 solllluuouuut"));
+	ft_lstdelone(list->next, freestr);
+	printf("size: %d\n", ft_lstsize(list));
+	while (list)
 	{
+		printf("%s\n", (char *) list->content);
 		list = list->next;
-		printf("%s\n", list->content);
-	}	
+	}
 	return (0);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,23 +12,22 @@
 
 #include "../libft.h"
 
-char	*ft_strdup(const char *s)
+t_list			*ft_lstnew(void *content)
 {
-	int		i;
-	char	*str;
+	t_list		*list;
+	size_t		size;
 
-	i = 0;
-	while (s[i])
-		i++;
-	str = (char *)malloc((i + 1) * sizeof(char));
-	if (!str)
+	size = ft_strlen((char *) content);
+	list = (t_list *)malloc(sizeof(t_list));
+	if (!list)
 		return (NULL);
-	i = 0;
-	while(s[i])
+	list->content = (void *)malloc((ft_strlen((char *) content + 1)) * sizeof(void));
+	if (list->content == NULL)
 	{
-		str[i] = s[i];
-		i++;
+		free(list);
+		return (NULL);
 	}
-	str[i] = '\0';
-	return (str);
+	ft_strlcpy(list->content, (char *)content, size + 1);
+	list->next = NULL;
+	return (list);
 }
