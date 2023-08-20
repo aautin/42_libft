@@ -12,9 +12,23 @@
 
 #include "libft.h"
 
-int		main(int ac, char **av)
+t_list			*ft_lstnew(void *content)
 {
-	(void) ac;
-	(void) av;
+	t_list	*list;
+	list->content = void
+}
+
+// just trying to understand the linked lists here...
+
+int		main(void)
+{
+	t_list	*list;
+	list = ft_lstnew(list);
+	printf("%s\n", list->content);
+	while (list->next)
+	{
+		list = list->next;
+		printf("%s\n", list->content);
+	}	
 	return (0);
 }

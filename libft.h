@@ -93,5 +93,7 @@ char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 // ----- here including the strlcat and strlcpy functions -----
 size_t			strlcpy(char *dst, const char *src, size_t siz);
 size_t			strlcat(char *dst, const char *src, size_t siz);
+// ---- example function used to test the strmapi function ----
+char			incrementation(unsigned int	n, char c);
 
 #endif

@@ -34,6 +34,7 @@ int		main(int ac, char **av)
 			printf("%d : ", i);
 			printf("%s\n", tab[i++]);
 		}
+		printf("%s -> %s", s1, ft_strmapi(s1, incrementation));
 		return (0);
 	}
 	if (ac == 2 && ft_atoi(av[1]) != -1 && ft_atoi(av[1]) != 444
