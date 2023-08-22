@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,20 +12,14 @@
 
 #include "../libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void			ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_list	*tmp;
-	t_list	*start;
+	t_list	*ptr;
 
-	if (!lst || !del)
-		return ;
-	start = *lst;
-	while (start)
+	ptr = lst;
+	while (ptr)
 	{
-		tmp = start->next;
-		del(start->content);
-		free(start);
-		start = tmp;
+		f(ptr->content);
+		ptr = ptr->next;
 	}
-	*lst = NULL;
 }
