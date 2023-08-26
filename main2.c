@@ -18,6 +18,27 @@ void	freestr(void *s)
 	free(s);
 }
 
+void	*reversevoid(void *s)
+{
+	char	i;
+	char	j;
+	char	*new_s;
+
+	i = 0;
+	while (((unsigned char *) s)[i])
+		i++;
+	new_s = (char *)malloc((i + 1) * sizeof(char));
+	i--;
+	j = 0;
+	while (((unsigned char *) s)[j])
+	{
+		new_s[j] = ((unsigned char *) s)[i];
+		i--;
+		j++;
+	}
+	return ((void *)new_s);
+}
+
 void	strupper(void *s)
 {
 	char	*ptr;
@@ -38,13 +59,12 @@ int		main(void)
 	t_list		front_node;
 	
 	list = ft_lstnew("1 salut");
-	list->next = ft_lstnew("2 saaaluuut");
 	ft_lstadd_front(&list, ft_lstnew("0 saaaluuuuuuuut"));
-	ft_lstadd_back(&list, ft_lstnew("3 solllluuouuut"));
-	ft_lstadd_back(&list, ft_lstnew("4 azeoirhuauoizehruut"));
-	ft_lstadd_back(&list, ft_lstnew("5 la vache j'ai chaud"));
-	ft_lstadd_back(&list, ft_lstnew("6 tiens tiens tiiiienns"));
-	ft_lstadd_back(&list, ft_lstnew("7 ya pas de panneau"));
+	ft_lstadd_back(&list, ft_lstnew("2 solllluuouuut"));
+	ft_lstadd_back(&list, ft_lstnew("3 azeoirhuauoizehruut"));
+	ft_lstadd_back(&list, ft_lstnew("4 la vache j'ai chaud"));
+	ft_lstadd_back(&list, ft_lstnew("5 tiens tiens tiiiienns"));
+	ft_lstadd_back(&list, ft_lstnew("6 ya pas de panneau"));
 	front_node = *list->next;
 	ft_lstdelone(list, freestr);
 	list = &front_node;
@@ -74,6 +94,15 @@ int		main(void)
 		write(1, "\t", 1);
 		printf("%s\n", (char *) list->content);
 		list = list->next;
+	}
+	list = &front_node;
+	t_list *new_list = ft_lstmap(list, reversevoid, freestr);
+	printf("\nNew_list's content: \n");
+	while (new_list)
+	{
+		write(1, "\t", 1);
+		printf("%s\n", (char *) new_list->content);
+		new_list = new_list->next;
 	}
 	return (0);
 }
