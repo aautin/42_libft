@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,19 +12,16 @@
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	size_t	i;
+	unsigned int	i;
 
+	if (!f)
+		return ;
 	i = 0;
-	while (i < n && ((unsigned char *) src)[i] != c)
+	while (s[i])
 	{
-		((unsigned char *) dest)[i] = ((unsigned char *) src)[i];
+		f(i, &s[i]);
 		i++;
 	}
-	if (((unsigned char *) src)[i] == c)
-		((unsigned char *) dest)[i] = ((unsigned char *) src)[i];
-	if (i == n)
-		return (NULL);
-	return ((&dest)[++i]);
 }

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int		ft_nb_size(int n)
+int	ft_nb_size(int n)
 {
 	int		i;
 	int		temp;
@@ -29,12 +29,26 @@ int		ft_nb_size(int n)
 	return (i);
 }
 
+char	*ft_malloc_str(char *str)
+{
+	char	*string;
+	int		i;
+
+	string = (char *)malloc(ft_strlen(str) * sizeof(char));
+	i = -1;
+	while (str[++i])
+		string[i] = str[i];
+	return (string);
+}
+
 char	*ft_itoa(int n)
 {
 	char	*array;
 	int		i;
 	int		sign;
 
+	if (n == -2147483648)
+		return (ft_malloc_str("-2147483648"));
 	i = ft_nb_size(n);
 	array = (char *)malloc((i + 1) * sizeof(char));
 	if (!array)
@@ -51,7 +65,14 @@ char	*ft_itoa(int n)
 		array[i] = (n % 10) + 48;
 		n = n / 10;
 	}
-	if (sign == - 1)
+	if (sign == -1)
 		array[0] = '-';
 	return (array);
 }
+
+// int main()
+// {
+// 	char *str;
+// 	str = ft_itoa(-2147483648);
+// 	free(str);
+// }

@@ -12,48 +12,50 @@
 
 #include "libft.h"
 
-unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	unsigned int	origin_dest_len;
-	unsigned int	origin_src_len;
-	unsigned int	i;
+	size_t	i;
+	size_t	j;
 
+	if ((!dest || !src) && size == 0)
+		return ((size_t) NULL);
+	j = ft_strlen((const char *)dest);
+	if (j > size)
+		return (size + ft_strlen(src));
+	if (!src)
+		return (j);
+	if (!size)
+		return (ft_strlen(src) + j);
 	i = 0;
-	origin_dest_len = ft_strlen(dest);
-	origin_src_len = ft_strlen(src);
-	if (size > 0 && size > origin_dest_len)
+	while (src[i] && (i + j) < size - 1)
 	{
-		while (i < origin_src_len && i < size - origin_dest_len - 1)
-		{
-			dest[origin_dest_len + i] = src[i];
-			i ++;
-		}
-		dest[origin_dest_len + i] = '\0';
-		return (origin_dest_len + origin_src_len);
+		dest[i + j] = src[i];
+		i++;
 	}
-	return (origin_src_len + size);
+	dest[i + j] = '\0';
+	return (j + ft_strlen(src));
 }
 
-size_t	strlcat(char *dst, const char *src, size_t siz)
-{
-	char *d = dst;
-	const char *s = src;
-	size_t n = siz;
-	size_t dlen;
-	/* Find the end of dst and adjust bytes left but don't go past end */
-	while (n-- != 0 && *d != '\0')
-		d++;
-	dlen = d - dst;
-	n = siz - dlen;
-	if (n == 0)
-		return(dlen + strlen(s));
-	while (*s != '\0') {
-		if (n != 1) {
-			*d++ = *s;
-			n--;
-		}
-		s++;
-	}
-	*d = '\0';
-	return(dlen + (s - src));	/* count does not include NUL */
-}
+// size_t	strlcat(char *dst, const char *src, size_t siz)
+// {
+// 	char *d = dst;
+// 	const char *s = src;
+// 	size_t n = siz;
+// 	size_t dlen;
+// 	/* Find the end of dst and adjust bytes left but don't go past end */
+// 	while (n-- != 0 && *d != '\0')
+// 		d++;
+// 	dlen = d - dst;
+// 	n = siz - dlen;
+// 	if (n == 0)
+// 		return(dlen + strlen(s));
+// 	while (*s != '\0') {
+// 		if (n != 1) {
+// 			*d++ = *s;
+// 			n--;
+// 		}
+// 		s++;
+// 	}
+// 	*d = '\0';
+// 	return(dlen + (s - src));	/* count does not include NUL */
+// }

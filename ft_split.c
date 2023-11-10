@@ -20,11 +20,14 @@ size_t	ft_count_elements(char const *s, char c)
 	i = 0;
 	elements_nb = 0;
 	while (s[i])
+	{
 		if (s[i++] != c)
 		{
 			elements_nb++;
-			while (s[i] && s[i++] != c);
+			while (s[i] && s[i] != c)
+				i++;
 		}
+	}
 	return (elements_nb);
 }
 
@@ -36,13 +39,13 @@ char	*ft_strdup_sep(const char *s, size_t *pos, char sep)
 	temp = *pos;
 	while (s[*pos] && s[*pos] != sep)
 		(*pos)++;
-	str = (char *)malloc((*pos - temp + 2) * sizeof(char));
+	str = (char *)malloc((*pos - temp + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
-	str[*pos - temp + 1] = '\0';
+	str[*pos - temp] = '\0';
 	*pos = temp;
 	temp = 0;
-	while(s[*pos] && s[*pos] != sep)
+	while (s[*pos] && s[*pos] != sep)
 	{
 		str[temp] = s[(*pos)];
 		temp++;
@@ -62,7 +65,6 @@ char	**ft_split(char const *s, char c)
 	tab = (char **)malloc((size + 1) * sizeof(char *));
 	if (!tab)
 		return (NULL);
-	tab[size] = NULL;
 	i = 0;
 	j = 0;
 	while (i < size)
@@ -72,5 +74,22 @@ char	**ft_split(char const *s, char c)
 		tab[i] = ft_strdup_sep(s, &j, c);
 		i++;
 	}
+	tab[size] = NULL;
 	return (tab);
 }
+
+// int	main(int argc, char *argv[])
+// {
+// 	if (argc == 3)
+// 	{
+// 		char 	**str = ft_split(argv[1], argv[2][0]);
+// 		int	i = 0;
+// 		while (str[i])
+// 		{
+// 			printf("|%s|\n", str[i]);
+// 			i++;
+// 		}
+// 		printf("|%s|\n", str[i]);
+// 	}
+// 	return (0);
+// }

@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-int		ft_is_in_str(char a, char *s)
+int	ft_is_in_str(char a, char *s)
 {
 	size_t	i;
-	
+
 	i = 0;
 	while (s[i])
 	{
@@ -26,7 +26,7 @@ int		ft_is_in_str(char a, char *s)
 	return (0);
 }
 
-char 	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	i;
 	size_t	start;
@@ -50,5 +50,5 @@ char 	*ft_strtrim(char const *s1, char const *set)
 	while (start <= end)
 		str[i++] = s1[start++];
 	str[i] = '\0';
-	return (str); 
+	return (str);
 }
