@@ -57,7 +57,10 @@ $(NAME)	:	$(OBJS)
 			ar rc $(NAME) $(OBJS)
 			ranlib $(NAME)
 # $(CC) -o $@ $^ $(CFLAGS)
-
+#so	:
+#		$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS)
+#		gcc -nostartfiles -shared -o libft.so $(OBJS)
+		
 # Règle implicite pour build les .o à partir des source (.c)
 %.o		:	%.c
 			$(CC) -c -o $@ $< $(CFLAGS)

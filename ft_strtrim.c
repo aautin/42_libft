@@ -26,6 +26,30 @@ int	ft_is_in_str(char a, char *s)
 	return (0);
 }
 
+int	ft_str_start(char *s, char *set)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] && ft_is_in_str(s[i], (char *) set))
+		i++;
+	return (i);
+}
+
+int	ft_str_end(char *s, char *set, int start)
+{
+	int	end;
+
+	end = start;
+	while (s[start])
+	{
+		if (!ft_is_in_str(s[start], (char *) set))
+			end = start;
+		start++;
+	}
+	return (end);
+}
+
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	i;
@@ -34,15 +58,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*str;
 
 	i = 0;
-	start = 0;
-	while (s1[i] && ft_is_in_str(s1[i], (char *) set))
-		start = ++i;
-	while (s1[i])
-	{
-		if (!ft_is_in_str(s1[i], (char *) set))
-			end = i;
-		i++;
-	}
+	start = ft_str_start((char *) s1, (char *) set);
+	end = ft_str_end((char *) s1, (char *) set, start);
 	str = (char *)malloc((end - start + 2) * sizeof(char));
 	if (!str)
 		return (NULL);
