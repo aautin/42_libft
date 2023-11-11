@@ -29,19 +29,6 @@ int	ft_nb_size(int n)
 	return (i);
 }
 
-char	*ft_malloc_str(char *str)
-{
-	char	*string;
-	int		i;
-
-	string = (char *)malloc((ft_strlen(str) + 1) * sizeof(char));
-	string[ft_strlen(str)] = '\0';
-	i = -1;
-	while (str[++i])
-		string[i] = str[i];
-	return (string);
-}
-
 char	*ft_itoa(int n)
 {
 	char	*array;
@@ -49,7 +36,7 @@ char	*ft_itoa(int n)
 	int		sign;
 
 	if (n == -2147483648 || n == -2147483648L || n == -2147483648LL)
-		return (ft_malloc_str("-2147483648\0"));
+		return (ft_strdup("-2147483648\0"));
 	i = ft_nb_size(n);
 	array = (char *)malloc((i + 1) * sizeof(char));
 	if (!array)

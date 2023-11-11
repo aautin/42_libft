@@ -59,10 +59,10 @@ CFLAGS	+=	-Wall -Werror -Wextra
 $(NAME)	:	$(OBJS)
 
 # $(CC) -o $@ $^ $(CFLAGS)
+all		:	$(NAME)
 # so	:
 # 		$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS)
 # 		gcc -nostartfiles -shared -o libft.so $(OBJS)
-all		:	$(NAME)
 
 # Règle implicite pour build les .o à partir des source (.c)
 %.o		:	%.c
