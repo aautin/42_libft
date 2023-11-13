@@ -12,13 +12,13 @@
 
 #include "libft.h"
 
-char	incrementation(unsigned int n, char c)
-{
-	if (n % 2)
-		return (c + 1);
-	else
-		return (c);
-}
+// char	incrementation(unsigned int n, char c)
+// {
+// 	if (n % 2)
+// 		return (c + 1);
+// 	else
+// 		return (c);
+// }
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
