@@ -1,6 +1,6 @@
 NAME	=	libft.a
 
-SRCS	=	ft_isalpha.c	\
+SRC		=	ft_isalpha.c	\
 			ft_isdigit.c	\
 			ft_isalnum.c	\
 			ft_isascii.c	\
@@ -35,7 +35,7 @@ SRCS	=	ft_isalpha.c	\
 			ft_putendl_fd.c	\
 			ft_putnbr_fd.c	\
 
-SRCS_BONUS	=	ft_lstnew.c	\
+SRC_BONUS	=	ft_lstnew.c	\
 				ft_lstadd_front.c	\
 				ft_lstsize.c	\
 				ft_lstlast.c	\
@@ -45,33 +45,29 @@ SRCS_BONUS	=	ft_lstnew.c	\
 				ft_lstiter.c	\
 				ft_lstmap.c	\
 
+OBJ 		=	$(SRC:.c=.o)
 
-OBJS 	= $(SRCS:.c=.o)
+OBJ_BONUS 	=	$(SRC_BONUS:.c=.o)
 
-OBJS_BONUS 	= $(SRCS_BONUS:.c=.o)
+CC			=	cc
 
-CC		= cc
+CFLAGS		+=	-Wall -Werror -Wextra
 
-CFLAGS	+=	-Wall -Werror -Wextra
+$(NAME)		:	$(OBJ) $(OBJ_BONUS)
+				ar -rc -o $(NAME) $(OBJ) $(OBJ_BONUS)
 
-$(NAME)	:	$(OBJS)
-			ar -rc -o $(NAME) $(OBJS)
+%.o			:	%.c
+				$(CC) $(CFLAGS) -c $< -o $@ 
 
-%.o		:	%.c
-			$(CC) $(CFLAGS) -c $< -o $@ 
+all			:	$(NAME)
 
-all		:	$(NAME)
+.PHONY		:	all clean fclean re bonus
 
-.PHONY	:	all clean fclean re bonus
+clean		:
+				$(RM) $(OBJ) $(OBJ_BONUS)
 
-bonus	: 	$(OBJS_BONUS)
-			ar -rc -o $(NAME) $(OBJS_BONUS)
+fclean		:	clean
+				$(RM) $(NAME)				
 
-clean	:
-			$(RM) $(OBJS) $(OBJS_BONUS)
-
-fclean	:	clean
-			$(RM) $(NAME)				
-
-re	:	fclean 
-		make
+re			:	fclean 
+				make

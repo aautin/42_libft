@@ -54,6 +54,18 @@ static char	*ft_strdup_sep(const char *s, size_t *pos, char sep)
 	return (str);
 }
 
+static void	ft_free_db_array(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**tab;
@@ -74,24 +86,13 @@ char	**ft_split(char const *s, char c)
 		while (s[j] && s[j] == c)
 			j++;
 		tab[i] = ft_strdup_sep(s, &j, c);
+		if (!tab[i])
+		{
+			ft_free_db_array(tab);
+			return (NULL);
+		}
 		i++;
 	}
 	tab[size] = NULL;
 	return (tab);
 }
-
-// int	main(int argc, char *argv[])
-// {
-// 	if (argc == 3)
-// 	{
-// 		char 	**str = ft_split(argv[1], argv[2][0]);
-// 		int	i = 0;
-// 		while (str[i])
-// 		{
-// 			printf("|%s|\n", str[i]);
-// 			i++;
-// 		}
-// 		printf("|%s|\n", str[i]);
-// 	}
-// 	return (0);
-// }
