@@ -12,20 +12,7 @@
 
 #include "libft.h"
 
-int	ft_str_is_set(char *str, char *set)
-{
-	int	i;
-
-	i = -1;
-	while (str[++i])
-	{
-		if (!ft_is_in_str(str[i], set))
-			return (0);
-	}
-	return (1);
-}
-
-int	ft_is_in_str(char a, char *s)
+static int	ft_is_in_str(char a, char *s)
 {
 	size_t	i;
 
@@ -39,7 +26,20 @@ int	ft_is_in_str(char a, char *s)
 	return (0);
 }
 
-int	ft_str_start(char *s, char *set)
+static int	ft_str_is_set(char *str, char *set)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (!ft_is_in_str(str[i], set))
+			return (0);
+	}
+	return (1);
+}
+
+static int	ft_str_start(char *s, char *set)
 {
 	int	i;
 
@@ -49,7 +49,7 @@ int	ft_str_start(char *s, char *set)
 	return (i);
 }
 
-int	ft_str_end(char *s, char *set, int start)
+static int	ft_str_end(char *s, char *set, int start)
 {
 	int	end;
 
@@ -70,7 +70,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	end;
 	char	*str;
 
-	if (!s1[0] || ft_str_is_set((char *) s1, (char *) set))
+	if (!s1 || !set || ft_str_is_set((char *) s1, (char *) set))
 	{
 		str = malloc(sizeof(char));
 		str[0] = '\0';

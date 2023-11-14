@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-size_t	ft_count_elements(char const *s, char c)
+static size_t	ft_count_elements(char const *s, char c)
 {
 	size_t	elements_nb;
 	size_t	i;
@@ -31,7 +31,7 @@ size_t	ft_count_elements(char const *s, char c)
 	return (elements_nb);
 }
 
-char	*ft_strdup_sep(const char *s, size_t *pos, char sep)
+static char	*ft_strdup_sep(const char *s, size_t *pos, char sep)
 {
 	char	*str;
 	int		temp;
@@ -61,6 +61,8 @@ char	**ft_split(char const *s, char c)
 	size_t	i;
 	size_t	j;
 
+	if (!s)
+		return (NULL);
 	size = ft_count_elements(s, c);
 	tab = (char **)malloc((size + 1) * sizeof(char *));
 	if (!tab)

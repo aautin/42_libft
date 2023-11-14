@@ -25,6 +25,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char			*newstr;
 	unsigned int	i;
 
+	if (!s || !f)
+		return (NULL);
 	newstr = (char *)malloc((ft_strlen((char *) s) + 1) * sizeof(char));
 	if (!newstr)
 		return (NULL);

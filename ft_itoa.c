@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	ft_nb_size(int n)
+static int	ft_nb_size(int n)
 {
 	int		i;
 	int		temp;
