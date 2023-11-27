@@ -34,34 +34,39 @@ SRC		=	ft_isalpha.c	\
 			ft_putstr_fd.c	\
 			ft_putendl_fd.c	\
 			ft_putnbr_fd.c	\
-
-SRC_BONUS	=	ft_lstnew.c	\
-				ft_lstadd_front.c	\
-				ft_lstsize.c	\
-				ft_lstlast.c	\
-				ft_lstadd_back.c	\
-				ft_lstdelone.c	\
-				ft_lstclear.c	\
-				ft_lstiter.c	\
-				ft_lstmap.c	\
+			ft_lstnew.c	\
+			ft_lstadd_front.c	\
+			ft_lstsize.c	\
+			ft_lstlast.c	\
+			ft_lstadd_back.c	\
+			ft_lstdelone.c	\
+			ft_lstclear.c	\
+			ft_lstiter.c	\
+			ft_lstmap.c	\
+			ft_printf/ft_printf.c	\
+			ft_printf/putptag.c	\
+			ft_printf/putxtag.c	\
+			ft_printf/putctag.c	\
+			ft_printf/putstag.c	\
+			ft_printf/tags.c	\
+			ft_printf/putdtag.c	\
+			ft_printf/pututag.c
 
 OBJ 		=	$(SRC:.c=.o)
-
-OBJ_BONUS 	=	$(SRC_BONUS:.c=.o)
 
 CC			=	cc
 
 CFLAGS		+=	-Wall -Werror -Wextra
 
 $(NAME)		:	$(OBJ) $(OBJ_BONUS)
-				ar -rc -o $(NAME) $(OBJ) $(OBJ_BONUS)
+				ar -rc -o $(NAME) $(OBJ)
 
 %.o			:	%.c
 				$(CC) $(CFLAGS) -c $< -o $@ 
 
 all			:	$(NAME)
 
-.PHONY		:	all clean fclean re bonus
+.PHONY		:	all clean fclean re
 
 clean		:
 				$(RM) $(OBJ) $(OBJ_BONUS)
