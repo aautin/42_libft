@@ -50,7 +50,8 @@ SRC		=	src/ft_isalpha.c	\
 			src/ft_printf/putstag.c	\
 			src/ft_printf/tags.c	\
 			src/ft_printf/putdtag.c	\
-			src/ft_printf/pututag.c
+			src/ft_printf/pututag.c	\
+			src/frees.c
 
 OBJ 		=	$(SRC:.c=.o)
 
