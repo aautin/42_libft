@@ -53,7 +53,9 @@ SRC		=	src/ft_isalpha.c	\
 			src/ft_printf/pututag.c	\
 			src/frees.c	\
 			src/gnl/get_next_line.c	\
-			src/gnl/get_next_line_utils.c
+			src/gnl/get_next_line_utils.c	\
+			src/free_stab.c	\
+			src/free_dtab.c
 
 OBJ 		=	$(SRC:.c=.o)
 

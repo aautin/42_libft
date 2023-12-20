@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   frees.c                                            :+:      :+:    :+:   */
+/*   free_dtab.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,49 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdarg.h>
+#include "../includes/libft.h"
 
-static void	free_it(char type, va_list args)
+void	free_dtab(int **str)
 {
-	char	*p_s;
-	char	**p_S;
-	int		*p_d;
-	int		**p_D;
+	int	i;
 
-	if (type == 's')
-	{
-		p_s = va_arg(args, char *);
-		free(p_s);
-	}
-	if (type == 'S')
-	{
-		p_S = va_arg(args, char **);
-		free(p_S);
-	}
-	if (type == 'd')
-	{
-		p_d = va_arg(args, int *);
-		free(p_d);
-	}
-	if (type == 'D')
-	{
-		p_D = va_arg(args, int **);
-		free(p_D);
-	}
-}
-
-void		frees(int frees_nb, ...)
-{
-	int		i;
-	va_list	args;
-
-	va_start(args, frees_nb);
 	i = 0;
-	while (i < frees_nb)
+	while (str[i])
 	{
-		free_it(va_arg(args, int), args);
+		free(str[i]);
 		i++;
 	}
-	va_end(args);
+	free(str);
 }
