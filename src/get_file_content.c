@@ -13,15 +13,11 @@
 #include "../includes/libft.h"
 #include "../includes/get_next_line.h"
 
-char	*get_file_content(char *filename)
+char	*get_file_content(int file_fd)
 {
 	char	*str;
 	char	*temp;
-	int		file_fd;
 
-	file_fd = open(filename, O_RDONLY);
-	if (file_fd == -1)
-		return (NULL);
 	temp = get_next_line(file_fd);
 	str = NULL;
 	while (temp)
@@ -38,6 +34,5 @@ char	*get_file_content(char *filename)
 		}
 		temp = get_next_line(file_fd);
 	}
-	close(file_fd);
 	return (str);
 }

@@ -69,7 +69,7 @@ char	**ft_split(char const *s, char c);
 void		frees(int frees_nb, ...);
 void		free_stab(char **str);
 void		free_dtab(int **str);
-char		*get_file_content(char *filename);
+char		*get_file_content(int file_fd);
 
 // ---- example function used to test the strmapi function ----
 // char	incrementation(unsigned int	n, char c);
