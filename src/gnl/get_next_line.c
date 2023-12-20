@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../../includes/get_next_line.h"
 
 static void	ft_get_afterline(char *str, char *substr)
 {
@@ -104,17 +104,17 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	if (buffer_str[fd])
-		line = ft_strjoin(buffer_str[fd], "", 0);
+		line = ft_strjoin2(buffer_str[fd], "", 0);
 	else
 	{
 		buffer_str[fd] = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 		buffer_str[fd][0] = '\0';
-		line = ft_strjoin("", "", 0);
+		line = ft_strjoin2("", "", 0);
 	}
 	while (!ft_strchr(line, '\n'))
 	{
 		readchars = ft_read_and_protect(fd, buffer_str[fd]);
-		line = ft_strjoin(line, buffer_str[fd], 1);
+		line = ft_strjoin2(line, buffer_str[fd], 1);
 		if (readchars != BUFFER_SIZE)
 			return (ft_notbuffsizeread(readchars, fd, buffer_str, line));
 	}

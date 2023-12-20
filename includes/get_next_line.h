@@ -21,11 +21,10 @@
 #  define BUFFER_SIZE 80
 # endif
 
-void	ft_free(void *mem);
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
 char	*ft_freenullreturn(char *s1, char *s2);
-char	*ft_strjoin(char *s1, char *s2, char free);
+char	*ft_strjoin2(char *s1, char *s2, char free);
 char	*get_next_line(int fd);
 
 #endif
