@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "../includes/libft.h"
 #include <stdarg.h>
 
 static void	free_it(char type, va_list args)
@@ -28,7 +28,7 @@ static void	free_it(char type, va_list args)
 	if (type == 'S')
 	{
 		p_S = va_arg(args, char **);
-		free(p_S);
+		free_stab(p_S);
 	}
 	if (type == 'd')
 	{
@@ -38,7 +38,7 @@ static void	free_it(char type, va_list args)
 	if (type == 'D')
 	{
 		p_D = va_arg(args, int **);
-		free(p_D);
+		free_db_dtab(p_D, va_arg(args, int));
 	}
 }
 

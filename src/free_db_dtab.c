@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_dtab.c                                        :+:      :+:    :+:   */
+/*   free_db_dtab.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,15 +12,15 @@
 
 #include "../includes/libft.h"
 
-void	free_dtab(int **str)
+void	free_db_dtab(int **tab, int size)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (i < size)
 	{
-		free(str[i]);
+		free(tab[i]);
 		i++;
 	}
-	free(str);
+	free(tab);
 }
