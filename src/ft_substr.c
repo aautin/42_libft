@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:26:06 by aautin            #+#    #+#             */
-/*   Updated: 2023/11/27 16:40:41 by aautin           ###   ########.fr       */
+/*   Updated: 2023/12/29 15:56:48 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s || start >= ft_strlen(s))
 	{
 		new_str = (char *)malloc(sizeof(char));
+		if (!new_str)
+			return (NULL);
 		new_str[0] = '\0';
 		return (new_str);
 	}

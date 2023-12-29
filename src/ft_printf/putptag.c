@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 01:53:50 by aautin            #+#    #+#             */
-/*   Updated: 2023/11/27 16:41:07 by aautin           ###   ########.fr       */
+/*   Updated: 2023/12/29 15:58:10 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ void	ft_putptag(t_tag *tag)
 	else
 	{
 		str = (char *)malloc((ft_nblen(nb, 16) + 1) * sizeof(char));
-		str[0] = '\0';
 		if (!str)
 			return ;
+		str[0] = '\0';
 		ft_putphexa_len(nb, &tag->len, 0, str);
 		ft_insertptag(tag, ft_strlen(str), str);
 		free(str);

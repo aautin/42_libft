@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:26:06 by aautin            #+#    #+#             */
-/*   Updated: 2023/11/27 16:40:41 by aautin           ###   ########.fr       */
+/*   Updated: 2023/12/29 15:56:11 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (!s1 || !set || ft_str_is_set((char *) s1, (char *) set))
 	{
 		str = malloc(sizeof(char));
+		if (!str)
+			return (NULL);
 		str[0] = '\0';
 		return (str);
 	}
