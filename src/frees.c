@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:26:06 by aautin            #+#    #+#             */
-/*   Updated: 2023/11/27 16:40:41 by aautin           ###   ########.fr       */
+/*   Updated: 2023/12/29 16:06:00 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 static void	free_it(char type, va_list args)
 {
 	char	*p_s;
-	char	**p_S;
+	char	**pp_s;
 	int		*p_d;
-	int		**p_D;
+	int		**pp_d;
 
 	if (type == 's')
 	{
@@ -27,8 +27,8 @@ static void	free_it(char type, va_list args)
 	}
 	if (type == 'S')
 	{
-		p_S = va_arg(args, char **);
-		free_stab(p_S);
+		pp_s = va_arg(args, char **);
+		free_stab(pp_s);
 	}
 	if (type == 'd')
 	{
@@ -37,12 +37,12 @@ static void	free_it(char type, va_list args)
 	}
 	if (type == 'D')
 	{
-		p_D = va_arg(args, int **);
-		free_db_dtab(p_D, va_arg(args, int));
+		pp_d = va_arg(args, int **);
+		free_db_dtab(pp_d, va_arg(args, int));
 	}
 }
 
-void		frees(int frees_nb, ...)
+void	frees(int frees_nb, ...)
 {
 	int		i;
 	va_list	args;

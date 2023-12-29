@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:48:18 by aautin            #+#    #+#             */
-/*   Updated: 2023/12/29 15:57:52 by aautin           ###   ########.fr       */
+/*   Updated: 2023/12/29 16:06:17 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_strlcat_c(char *dest, char src)
 
 	str = (char *)malloc(2 * sizeof(char));
 	if (!str)
-		return (NULL);
+		return ;
 	str[0] = src;
 	str[1] = '\0';
 	ft_strlcat(dest, str, ft_strlen(dest) + ft_strlen(str) + 1);

@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:44:07 by aautin            #+#    #+#             */
-/*   Updated: 2023/12/29 16:02:28 by aautin           ###   ########.fr       */
+/*   Updated: 2023/12/29 16:06:31 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char	*get_next_line(int fd)
 	else
 	{
 		buffer_str[fd] = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-		if (!buffer_str)
+		if (!buffer_str[fd])
 			return (NULL);
 		buffer_str[fd][0] = '\0';
 		line = ft_strjoin2("", "", 0);
