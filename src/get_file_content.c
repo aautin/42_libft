@@ -1,41 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   get_file_content.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
+/*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:26:06 by aautin            #+#    #+#             */
-/*   Updated: 2023/12/16 13:22:21 by alexandre        ###   ########.fr       */
+/*   Updated: 2023/11/27 16:40:41 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
+#include "../includes/get_next_line.h"
 
-char	*ft_strjoin(char *s1, char *s2, char to_free)
+char	*get_file_content(int file_fd)
 {
 	char	*str;
-	int		i;
-	int		j;
+	char	*temp;
 
-	if (!s1 || !s2)
-		return (NULL);
-	str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (s1[i])
+	temp = get_next_line(file_fd);
+	str = NULL;
+	while (temp)
 	{
-		str[i] = s1[i];
-		i++;
+		if (str)
+			str = ft_strjoin(str, temp, 1);
+		else
+			str = ft_strdup(temp);
+		free(temp);
+		if (!str)
+		{
+			close(file_fd);
+			return (NULL);
+		}
+		temp = get_next_line(file_fd);
 	}
-	j = -1;
-	while (s2[++j])
-		str[i + j] = s2[j];
-	str[i + j] = '\0';
-	if (to_free == 1 || to_free == 3)
-		free(s1);
-	if (to_free == 2 || to_free == 3)
-		free(s2);
 	return (str);
 }

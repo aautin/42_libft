@@ -24,8 +24,6 @@ static int	ft_nb_size(unsigned int n)
 		temp = temp / 10;
 		i++;
 	}
-	if (n < 0)
-		i++;
 	return (i);
 }
 
@@ -33,26 +31,17 @@ static char	*ft_utoa(unsigned int n)
 {
 	char	*array;
 	int		i;
-	int		sign;
 
 	i = ft_nb_size(n);
 	array = (char *)malloc((i + 1) * sizeof(char));
 	if (!array)
 		return (NULL);
-	sign = 0;
-	if (n < 0)
-	{
-		sign = -1;
-		n *= -1;
-	}
 	array[i] = '\0';
 	while (i--)
 	{
 		array[i] = (n % 10) + 48;
 		n = n / 10;
 	}
-	if (sign == -1)
-		array[0] = '-';
 	return (array);
 }
 
