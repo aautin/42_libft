@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:44:07 by aautin            #+#    #+#             */
-/*   Updated: 2023/12/29 16:06:31 by aautin           ###   ########.fr       */
+/*   Updated: 2023/12/31 17:24:26 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static char	*ft_notbuffsizeread(int sz, int fd, char **buffer_str, char *line)
 {
 	if (sz == -1)
 		return (ft_freenullreturn(buffer_str[fd], line));
-	if (ft_strchr(line, '\n'))
+	if (ft_strchr2(line, '\n'))
 	{
 		ft_get_afterline(line, buffer_str[fd]);
 		return (ft_get_beforeline(line, 1));
@@ -113,7 +113,7 @@ char	*get_next_line(int fd)
 		buffer_str[fd][0] = '\0';
 		line = ft_strjoin2("", "", 0);
 	}
-	while (!ft_strchr(line, '\n'))
+	while (!ft_strchr2(line, '\n'))
 	{
 		readchars = ft_read_and_protect(fd, buffer_str[fd]);
 		line = ft_strjoin2(line, buffer_str[fd], 1);
