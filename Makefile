@@ -56,6 +56,7 @@ SRC		=	src/ft_isalpha.c	\
 			src/gnl/get_next_line_utils.c	\
 			src/free_stab.c	\
 			src/free_db_dtab.c	\
+			src/stab_dup.c	\
 			src/get_file_content.c
 
 OBJ 		=	$(SRC:.c=.o)

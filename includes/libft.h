@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:26:06 by aautin            #+#    #+#             */
-/*   Updated: 2023/12/29 16:03:55 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/01 18:31:22 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void		frees(int frees_nb, ...);
 void		free_stab(char **str);
 void		free_db_dtab(int **tab, int size);
 char		*get_file_content(int file_fd);
+char		**stab_dup(char **tab);
 
 // ---- example function used to test the strmapi function ----
 // char	incrementation(unsigned int	n, char c);
