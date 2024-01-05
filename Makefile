@@ -63,7 +63,7 @@ OBJ 		=	$(SRC:.c=.o)
 
 CC			=	cc
 
-CFLAGS		+=	-Wall -Werror -Wextra
+CFLAGS		+=	-Wall -Werror -Wextra -g3
 
 $(NAME)		:	$(OBJ) $(OBJ_BONUS)
 				ar -rc -o $(NAME) $(OBJ)

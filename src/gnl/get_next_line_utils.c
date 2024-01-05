@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:44:11 by aautin            #+#    #+#             */
-/*   Updated: 2023/12/31 17:23:47 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/05 19:37:12 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ size_t	ft_strlen2(const char *s)
 {
 	size_t	i;
 
-	if (!s)
-		return (0);
 	i = 0;
 	while (s[i])
 		i++;
@@ -39,13 +37,6 @@ char	*ft_strchr2(const char *s, int c)
 	}
 	if ((char) c == '\0')
 		return ((char *) &s[i]);
-	return (NULL);
-}
-
-char	*ft_freenullreturn(char *s1, char *s2)
-{
-	free(s1);
-	free(s2);
 	return (NULL);
 }
 

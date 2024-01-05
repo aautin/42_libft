@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:44:07 by aautin            #+#    #+#             */
-/*   Updated: 2023/12/31 17:24:26 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/05 19:37:24 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,58 +68,52 @@ static size_t	ft_read_and_protect(int fd, char *buffer_str)
 	return (readchars);
 }
 
-static char	*ft_notbuffsizeread(int sz, int fd, char **buffer_str, char *line)
+static char	*ft_notbuffsizeread(int sz, char *buffer_str, char *line)
 {
 	if (sz == -1)
-		return (ft_freenullreturn(buffer_str[fd], line));
+	{
+		free(line);
+		return (NULL);
+	}
 	if (ft_strchr2(line, '\n'))
 	{
-		ft_get_afterline(line, buffer_str[fd]);
+		ft_get_afterline(line, buffer_str);
 		return (ft_get_beforeline(line, 1));
 	}
 	else
 	{
-		if (!line[0] && !buffer_str[fd][0])
-		{
-			free(buffer_str[fd]);
-			free(line);
-			return (NULL);
-		}
 		if (line[0])
 		{
-			buffer_str[fd][0] = '\0';
+			buffer_str[0] = '\0';
 			return (line);
 		}
 		else
-			return (ft_freenullreturn(buffer_str[fd], line));
+		{
+			free(line);
+			return (NULL);
+		}
 	}
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer_str[1024];
+	static char	buffer_str[BUFFER_SIZE + 1];
 	char		*line;
 	long int	readchars;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	if (buffer_str[fd])
-		line = ft_strjoin2(buffer_str[fd], "", 0);
+	if (buffer_str[0] != '\0')
+		line = ft_strjoin2(buffer_str, "", 0);
 	else
-	{
-		buffer_str[fd] = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-		if (!buffer_str[fd])
-			return (NULL);
-		buffer_str[fd][0] = '\0';
 		line = ft_strjoin2("", "", 0);
-	}
 	while (!ft_strchr2(line, '\n'))
 	{
-		readchars = ft_read_and_protect(fd, buffer_str[fd]);
-		line = ft_strjoin2(line, buffer_str[fd], 1);
+		readchars = ft_read_and_protect(fd, buffer_str);
+		line = ft_strjoin2(line, buffer_str, 1);
 		if (readchars != BUFFER_SIZE)
-			return (ft_notbuffsizeread(readchars, fd, buffer_str, line));
+			return (ft_notbuffsizeread(readchars, buffer_str, line));
 	}
-	ft_get_afterline(line, buffer_str[fd]);
+	ft_get_afterline(line, buffer_str);
 	return (ft_get_beforeline(line, 1));
 }
