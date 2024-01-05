@@ -6,19 +6,23 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:26:06 by aautin            #+#    #+#             */
-/*   Updated: 2023/11/27 16:40:41 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/05 18:26:00 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 #include "../includes/get_next_line.h"
 
-char	*get_file_content(int file_fd)
+char	*get_file_content(char *filename)
 {
+	int		fd;
 	char	*str;
 	char	*temp;
 
-	temp = get_next_line(file_fd);
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		return (NULL);
+	temp = get_next_line(fd);
 	str = NULL;
 	while (temp)
 	{
@@ -29,10 +33,11 @@ char	*get_file_content(int file_fd)
 		free(temp);
 		if (!str)
 		{
-			close(file_fd);
+			close(fd);
 			return (NULL);
 		}
-		temp = get_next_line(file_fd);
+		temp = get_next_line(fd);
 	}
+	close(fd);
 	return (str);
 }
