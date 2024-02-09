@@ -79,7 +79,7 @@ clean		:
 				$(RM) $(OBJ) $(OBJ_BONUS)
 
 fclean		:	clean
-				$(RM) $(NAME)				
+				$(RM) $(NAME) a.out
 
 re			:	fclean 
 				make
