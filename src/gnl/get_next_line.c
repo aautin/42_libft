@@ -5,115 +5,130 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 12:44:07 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/05 19:37:24 by aautin           ###   ########.fr       */
+/*   Created: 2024/01/09 16:41:01 by aautin            #+#    #+#             */
+/*   Updated: 2024/01/11 17:18:15 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/get_next_line.h"
 
-static void	ft_get_afterline(char *str, char *substr)
+char	*string_join(char *s1, char *s2, char flag)
 {
-	size_t	start;
-	size_t	len;
+	char	*new_str;
+	int		i;
+	int		j;
 
-	start = 0;
-	while (str[start] != '\n' && str[start])
-		start++;
-	if (str[start])
-		start++;
-	len = 0;
-	while (str[start + len])
-	{
-		substr[len] = str[start + len];
-		len++;
-	}
-	substr[len] = '\0';
+	j = 0;
+	i = -1;
+	while (s1[++i])
+		j++;
+	i = -1;
+	while (s2[++i])
+		j++;
+	new_str = (char *)malloc((j + 1) * sizeof(char));
+	if (new_str == NULL)
+		return (NULL);
+	i = -1;
+	j = -1;
+	while (s1[++i])
+		new_str[++j] = s1[i];
+	i = -1;
+	while (s2[++i])
+		new_str[++j] = s2[i];
+	new_str[++j] = '\0';
+	if (flag == 1)
+		free(s1);
+	return (new_str);
 }
 
-static char	*ft_get_beforeline(char *str, char freed)
+void	set_string_after_newline(char *buffer)
 {
-	size_t	i;
-	size_t	len;
-	char	*substr;
+	int	i;
+	int	j;
 
-	len = 0;
-	while (str[len] != '\n' && str[len])
-		len++;
-	substr = (char *)malloc((len + 2) * sizeof(char));
-	if (!substr)
-		return (NULL);
-	substr[len] = '\n';
-	substr[len + 1] = '\0';
-	i = 0;
-	while (i < len && str[i])
+	i = -1;
+	while (buffer[++i] != '\n')
 	{
-		substr[i] = str[i];
+		if (buffer[i] == '\0')
+		{
+			buffer[0] = '\0';
+			return ;
+		}
+	}
+	j = 0;
+	while (buffer[++i])
+	{
+		buffer[j] = buffer[i];
+		j++;
+	}
+	buffer[j] = '\0';
+}
+
+char	*turn_string_into_firstline(char *temp)
+{
+	char	*new_str;
+	int		i;
+
+	i = 0;
+	while (temp[i] && temp[i] != '\n')
+		i++;
+	i += temp[i] == '\n';
+	new_str = (char *)malloc((i + 1) * sizeof(char));
+	if (new_str == NULL)
+		return (NULL);
+	i = 0;
+	while (temp[i] && temp[i] != '\n')
+	{
+		new_str[i] = temp[i];
 		i++;
 	}
-	if (freed && str)
-		free(str);
-	return (substr);
-}
-
-static size_t	ft_read_and_protect(int fd, char *buffer_str)
-{
-	size_t	readchars;
-
-	readchars = read(fd, buffer_str, BUFFER_SIZE);
-	if (readchars <= 0)
-		buffer_str[0] = '\0';
-	else
-		buffer_str[readchars] = '\0';
-	return (readchars);
-}
-
-static char	*ft_notbuffsizeread(int sz, char *buffer_str, char *line)
-{
-	if (sz == -1)
-	{
-		free(line);
-		return (NULL);
-	}
-	if (ft_strchr2(line, '\n'))
-	{
-		ft_get_afterline(line, buffer_str);
-		return (ft_get_beforeline(line, 1));
-	}
-	else
-	{
-		if (line[0])
-		{
-			buffer_str[0] = '\0';
-			return (line);
-		}
-		else
-		{
-			free(line);
-			return (NULL);
-		}
-	}
+	if (temp[i] == '\n')
+		new_str[i++] = '\n';
+	new_str[i] = '\0';
+	free(temp);
+	return (new_str);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	buffer_str[BUFFER_SIZE + 1];
-	char		*line;
-	long int	readchars;
+	static char	buffer[512][BUFFER_SIZE + 1];
+	char		*temp;
+	int			read_nb;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || read(fd, 0, 0) < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (buffer_str[0] != '\0')
-		line = ft_strjoin2(buffer_str, "", 0);
-	else
-		line = ft_strjoin2("", "", 0);
-	while (!ft_strchr2(line, '\n'))
+	temp = string_join(buffer[fd], "", 0);
+	if (temp == NULL)
+		return (NULL);
+	while (string_chr(temp, '\n') == 0)
 	{
-		readchars = ft_read_and_protect(fd, buffer_str);
-		line = ft_strjoin2(line, buffer_str, 1);
-		if (readchars != BUFFER_SIZE)
-			return (ft_notbuffsizeread(readchars, buffer_str, line));
+		read_nb = read(fd, buffer[fd], BUFFER_SIZE);
+		if (read_nb == -1 || (read_nb == 0 && temp[0] == '\0'))
+			return (free(temp), NULL);
+		buffer[fd][read_nb] = '\0';
+		if (read_nb == 0)
+			return (temp);
+		temp = string_join(temp, buffer[fd], 1);
+		if (temp == NULL)
+			return (NULL);
 	}
-	ft_get_afterline(line, buffer_str);
-	return (ft_get_beforeline(line, 1));
+	set_string_after_newline(buffer[fd]);
+	return (turn_string_into_firstline(temp));
 }
+
+// int	main(void)
+// {
+// 	char	*str;
+// 	int		fd;
+
+// 	fd = open("text", O_RDONLY);
+// 	str = get_next_line(fd);
+// 	while (str)
+// 	{
+// 		printf("|%s|", str);
+// 		free(str);
+// 		str = get_next_line(fd);
+// 	}
+// 	printf("%s|", str);
+// 	return (0);
+// }
