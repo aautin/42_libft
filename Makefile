@@ -51,9 +51,9 @@ SRC		=	src/ft_isalpha.c	\
 			src/ft_printf/tags.c	\
 			src/ft_printf/putdtag.c	\
 			src/ft_printf/pututag.c	\
-			src/frees.c	\
 			src/gnl/get_next_line.c	\
 			src/gnl/get_next_line_utils.c	\
+			src/lsttostr.c	\
 			src/free_stab.c	\
 			src/free_db_dtab.c	\
 			src/stab_dup.c	\
