@@ -1,3 +1,11 @@
+DEFAULT	:=	\e(B\e[m
+RED		:=	\e[31m
+GREEN	:=	\e[32m
+ORANGE	:=	\e[33m
+BLUE	:=	\e[34m
+PURPLE	:=	\e[35m
+CYAN	:=	\e[36m
+
 NAME	=	libft.a
 
 SRC		=	src/ft_isalpha.c	\
@@ -66,20 +74,21 @@ CC			=	cc
 CFLAGS		+=	-Wall -Werror -Wextra -g3
 
 $(NAME)		:	$(OBJ) $(OBJ_BONUS)
-				ar -rc -o $(NAME) $(OBJ)
+				@ar -rc -o $(NAME) $(OBJ)
+				@echo "$(GREEN)Compiled $(PURPLE)$@$(DEFAULT)"
 
 %.o			:	%.c
-				$(CC) $(CFLAGS) -c $< -o $@ 
+				@$(CC) $(CFLAGS) -c $< -o $@
 
 all			:	$(NAME)
 
 .PHONY		:	all clean fclean re
 
 clean		:
-				$(RM) $(OBJ) $(OBJ_BONUS)
+				@$(RM) $(OBJ) $(OBJ_BONUS)
+				@echo "$(RED)Removed $(BLUE)libft$(RED) objects$(DEFAULT)"
 
 fclean		:	clean
-				$(RM) $(NAME) a.out
+				@$(RM) $(NAME) a.out
 
-re			:	fclean 
-				make
+re			:	fclean all
