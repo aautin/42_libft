@@ -1,43 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_file_content.c                                 :+:      :+:    :+:   */
+/*   file_to_lst.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:26:06 by aautin            #+#    #+#             */
-/*   Updated: 2024/06/22 16:36:21 by aautin           ###   ########.fr       */
+/*   Updated: 2024/06/22 20:10:09 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "get_next_line.h"
 
-char	*get_file_content(char *filename)
+t_list	*file_to_lst(int fd)
 {
-	int		fd;
-	char	*str;
-	char	*temp;
+	t_list	*lst;
+	t_list	*new;
+	char	*buffer;
 
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-		return (NULL);
-	temp = get_next_line(fd);
-	str = NULL;
-	while (temp)
+	lst = NULL;
+	buffer = get_next_line(fd);
+	while (buffer)
 	{
-		if (str)
-			str = ft_strjoin(str, temp, 1);
-		else
-			str = ft_strdup(temp);
-		free(temp);
-		if (!str)
+		new = ft_lstnew(buffer);
+		if (new == NULL)
 		{
-			close(fd);
-			return (NULL);
+			ft_lstclear(&lst, &free);
+			return (perror("file_to_lst():ft_lstnew()"), NULL);
 		}
-		temp = get_next_line(fd);
+		ft_lstadd_back(&lst, new);
+		buffer = get_next_line(fd);
 	}
-	close(fd);
-	return (str);
+	return (lst);
 }

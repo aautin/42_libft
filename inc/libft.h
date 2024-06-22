@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:26:06 by aautin            #+#    #+#             */
-/*   Updated: 2024/06/22 16:41:46 by aautin           ###   ########.fr       */
+/*   Updated: 2024/06/22 20:10:36 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ char		*ft_itoa(int n);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char		**ft_split(char const *s, char c);
 
+t_list		*file_to_lst(int fd);
 char		**stab_dup(char **tab);
 void		free_double_tab(void **double_tab, int size);
 void		**lst_to_double_tab(t_list *lst, int *return_size);

@@ -66,7 +66,7 @@ SRC		=	src/ft_isalpha.c	\
 			src/lst_to_double_tab.c	\
 			src/free_double_tab.c	\
 			src/stab_dup.c	\
-			src/get_file_content.c
+			src/file_to_lst.c	\
 
 OBJ 		=	$(SRC:.c=.o)
 
