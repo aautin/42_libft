@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 18:28:48 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/01 19:20:34 by aautin           ###   ########.fr       */
+/*   Updated: 2024/06/22 16:20:51 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**stab_dup(char **tab)
 		tab_copy[len] = ft_strdup(tab[len]);
 		if (tab_copy[len] == NULL)
 		{
-			free_stab(tab_copy);
+			free_double_tab((void **) tab_copy, len);
 			return (NULL);
 		}
 		len++;

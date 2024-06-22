@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lsttostr.c                                         :+:      :+:    :+:   */
+/*   lst_to_double_tab.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 18:28:48 by aautin            #+#    #+#             */
-/*   Updated: 2024/06/22 16:04:24 by aautin           ###   ########.fr       */
+/*   Updated: 2024/06/22 16:24:02 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "../includes/libft.h"
 
-void	**lsttotab(t_list *lst, int *return_size)
+void	**lst_to_double_tab(t_list *lst, int *return_size)
 {
 	t_list	*head;
 	void	**tab;

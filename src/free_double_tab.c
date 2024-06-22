@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_db_dtab.c                                     :+:      :+:    :+:   */
+/*   free_double_tab.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:26:06 by aautin            #+#    #+#             */
-/*   Updated: 2023/11/27 16:40:41 by aautin           ###   ########.fr       */
+/*   Updated: 2024/06/22 16:23:18 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-void	free_db_dtab(int **tab, int size)
+/** * @param return_size put "-1" if must free until NULL ptr */
+void	free_double_tab(void **double_tab, int size)
 {
 	int	i;
 
 	i = 0;
-	while (i < size)
+	while ((size == -1 && double_tab[i] != NULL) || (size != -1 && i < size))
 	{
-		free(tab[i]);
+		free(double_tab[i]);
 		i++;
 	}
-	free(tab);
+	free(double_tab);
 }
