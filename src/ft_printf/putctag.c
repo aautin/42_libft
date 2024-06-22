@@ -6,11 +6,11 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 15:42:06 by aautin            #+#    #+#             */
-/*   Updated: 2023/11/27 16:41:07 by aautin           ###   ########.fr       */
+/*   Updated: 2024/06/22 16:33:40 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "ft_printf.h"
 
 void	ft_putchar_len(int a, int *len)
 {

@@ -6,11 +6,11 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 15:44:46 by aautin            #+#    #+#             */
-/*   Updated: 2023/11/27 16:41:07 by aautin           ###   ########.fr       */
+/*   Updated: 2024/06/22 16:35:43 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "ft_printf.h"
 
 void	ft_tags_init(t_tag *tag)
 {

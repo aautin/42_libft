@@ -6,6 +6,8 @@ BLUE	:=	\e[34m
 PURPLE	:=	\e[35m
 CYAN	:=	\e[36m
 
+INC		= 	inc/
+
 NAME	=	libft.a
 
 SRC		=	src/ft_isalpha.c	\
@@ -77,7 +79,7 @@ $(NAME)		:	$(OBJ) $(OBJ_BONUS)
 				@echo "$(GREEN)Compiled $(PURPLE)$@$(DEFAULT)"
 
 %.o			:	%.c
-				@$(CC) $(CFLAGS) -c $< -o $@
+				@$(CC) $(CFLAGS) -c $< -o $@ -I$(INC)
 
 all			:	$(NAME)
 

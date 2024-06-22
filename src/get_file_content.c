@@ -6,12 +6,12 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:26:06 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/05 18:54:23 by aautin           ###   ########.fr       */
+/*   Updated: 2024/06/22 16:36:21 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
-#include "../includes/get_next_line.h"
+#include "libft.h"
+#include "get_next_line.h"
 
 char	*get_file_content(char *filename)
 {

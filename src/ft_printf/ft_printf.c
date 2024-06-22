@@ -6,12 +6,12 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:48:18 by aautin            #+#    #+#             */
-/*   Updated: 2023/12/29 16:06:17 by aautin           ###   ########.fr       */
+/*   Updated: 2024/06/22 16:35:08 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "../../includes/ft_printf.h"
+#include "ft_printf.h"
 
 void	ft_pre_str(int *nb, t_tag *tag, int strlen)
 {

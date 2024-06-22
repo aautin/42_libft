@@ -6,11 +6,11 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 16:41:01 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/11 17:18:15 by aautin           ###   ########.fr       */
+/*   Updated: 2024/06/22 16:36:02 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/get_next_line.h"
+#include "get_next_line.h"
 
 char	*string_join(char *s1, char *s2, char flag)
 {

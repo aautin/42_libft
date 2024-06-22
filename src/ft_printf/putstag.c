@@ -6,11 +6,11 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 23:00:15 by aautin            #+#    #+#             */
-/*   Updated: 2023/11/27 16:41:07 by aautin           ###   ########.fr       */
+/*   Updated: 2024/06/22 16:35:26 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "ft_printf.h"
 
 static void	ft_putnullstr(int *printed, t_tag *tag)
 {

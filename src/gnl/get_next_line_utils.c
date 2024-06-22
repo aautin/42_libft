@@ -6,11 +6,11 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 18:56:47 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/11 17:18:12 by aautin           ###   ########.fr       */
+/*   Updated: 2024/06/22 16:35:57 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/get_next_line.h"
+#include "get_next_line.h"
 
 char	*string_chr(char *str, char letter)
 {
