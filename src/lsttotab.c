@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 18:28:48 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/01 19:20:34 by aautin           ###   ########.fr       */
+/*   Updated: 2024/06/22 16:04:24 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,30 @@
 
 #include "../includes/libft.h"
 
-char	*lsttostr(t_list *lst)
+void	**lsttotab(t_list *lst, int *return_size)
 {
 	t_list	*head;
-	size_t	resultSize;
-	char	*result;
+	void	**tab;
+	size_t	tab_size;
 
 	head = lst;
-	resultSize = 1;
+	tab_size = 0;
 	while (lst != NULL)
 	{
-		resultSize += ft_strlen(lst->content);
+		tab_size++;
 		lst = lst->next;
 	}
-	result = ft_calloc(resultSize, sizeof(char));
-	if (result == NULL)
+	tab = malloc((tab_size + (return_size == NULL)) * sizeof(void *));
+	if (tab == NULL)
+		return (perror("lsttotab():malloc()"), NULL);
+	if (return_size == NULL)
+		tab[tab_size] = NULL;
+	else
+		*return_size = tab_size;
+	while (head != NULL)
 	{
-		perror("lsttostr():ft_calloc()");
-		return (NULL);
+		tab[--tab_size] = head->content;
+		head = head->next;
 	}
-	lst = head;
-	while (lst != NULL)
-	{
-		ft_strlcat(result, lst->content, resultSize);
-		lst = lst->next;
-	}
-	return (result);
+	return (tab);
 }
