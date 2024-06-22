@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:26:06 by aautin            #+#    #+#             */
-/*   Updated: 2024/06/22 20:10:09 by aautin           ###   ########.fr       */
+/*   Updated: 2024/06/22 21:45:59 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_list	*file_to_lst(int fd)
 		if (new == NULL)
 		{
 			ft_lstclear(&lst, &free);
+			free(buffer);
 			return (perror("file_to_lst():ft_lstnew()"), NULL);
 		}
 		ft_lstadd_back(&lst, new);
