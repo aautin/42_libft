@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 16:41:01 by aautin            #+#    #+#             */
-/*   Updated: 2024/06/22 16:36:02 by aautin           ###   ########.fr       */
+/*   Updated: 2024/06/25 23:15:31 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	set_string_after_newline(char *buffer)
 	buffer[j] = '\0';
 }
 
-char	*turn_string_into_firstline(char *temp)
+char	*get_firstline(char *temp)
 {
 	char	*new_str;
 	int		i;
@@ -89,46 +89,43 @@ char	*turn_string_into_firstline(char *temp)
 	return (new_str);
 }
 
+static int	is_last_read_is_correct(int reads_nb, int read_size, char *temp)
+{
+	if (reads_nb * BUFFER_SIZE > 1000000)
+	{
+		printf("Can't read no more, considers the file at the end");
+		return (0);
+	}
+	if (read_size == -1 || (!read_size && !temp[0]))
+		return (0);
+	return (1);
+}
+
 char	*get_next_line(int fd)
 {
-	static char	buffer[512][BUFFER_SIZE + 1];
-	char		*temp;
-	int			read_nb;
+	static char		buffer[512][BUFFER_SIZE + 1];
+	char			*temp;
+	int				read_size;
+	unsigned int	reads_nb;
 
 	if (fd < 0 || read(fd, 0, 0) < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	temp = string_join(buffer[fd], "", 0);
 	if (temp == NULL)
 		return (NULL);
+	reads_nb = 0;
 	while (string_chr(temp, '\n') == 0)
 	{
-		read_nb = read(fd, buffer[fd], BUFFER_SIZE);
-		if (read_nb == -1 || (read_nb == 0 && temp[0] == '\0'))
+		read_size = read(fd, buffer[fd], BUFFER_SIZE);
+		reads_nb++;
+		if (!is_last_read_is_correct(reads_nb, read_size, temp))
 			return (free(temp), NULL);
-		buffer[fd][read_nb] = '\0';
-		if (read_nb == 0)
+		buffer[fd][read_size] = '\0';
+		if (read_size == 0)
 			return (temp);
 		temp = string_join(temp, buffer[fd], 1);
 		if (temp == NULL)
 			return (NULL);
 	}
-	set_string_after_newline(buffer[fd]);
-	return (turn_string_into_firstline(temp));
+	return (set_string_after_newline(buffer[fd]), get_firstline(temp));
 }
-
-// int	main(void)
-// {
-// 	char	*str;
-// 	int		fd;
-
-// 	fd = open("text", O_RDONLY);
-// 	str = get_next_line(fd);
-// 	while (str)
-// 	{
-// 		printf("|%s|", str);
-// 		free(str);
-// 		str = get_next_line(fd);
-// 	}
-// 	printf("%s|", str);
-// 	return (0);
-// }

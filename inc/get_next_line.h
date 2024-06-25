@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 16:37:08 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/11 17:19:12 by aautin           ###   ########.fr       */
+/*   Updated: 2024/06/25 22:36:04 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*string_chr(char *str, char letter);
 // get_next_line_bonus.c
 char	*string_join(char *s1, char *s2, char flag);
 void	set_string_after_newline(char *buffer);
-char	*turn_string_into_firstline(char *temp);
+char	*get_firstline(char *temp);
 char	*get_next_line(int fd);
 
 #endif
