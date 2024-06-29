@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:26:06 by aautin            #+#    #+#             */
-/*   Updated: 2024/06/22 20:10:36 by aautin           ###   ########.fr       */
+/*   Updated: 2024/06/29 20:20:21 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 # include <stdlib.h>
 # include <stddef.h>
 
-# define TRUE	1
-# define FALSE	0
+# define TRUE		1
+# define FALSE		0
+# define SUCCESS	0
+# define FAILURE	1
 
 typedef struct s_list
 {
